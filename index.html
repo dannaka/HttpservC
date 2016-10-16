@@ -1,0 +1,31 @@
+<!DOCYTPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html"
+	      charset="utf-8" />
+	<title>Omikuji</title>
+	<link rel="stylesheet" type="text/css" href="css/omikuji.css" />
+</head>
+<body>
+	<div id="result">?</div>
+	<div id="btn">PUSH!</div>
+	<script>
+		(function(){
+			"use strict";
+			let btn=document.getElementById('btn');
+			let result=document.getElementById('result');
+
+			btn.addEventListener('click',()=>{
+				result.innerHTML='!';
+				result.className='pushed';
+			});
+			btn.addEventListener('mousedown',()=>{
+				this.className='pushed';
+			});
+			btn.addEventListener('mouseup',()=>{
+				this.className='';
+			});	
+		})();
+	</script>
+</body>
+</html>
