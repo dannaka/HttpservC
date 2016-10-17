@@ -19,7 +19,6 @@
 #include<sysexits.h>
 #include<unistd.h>
 
-#define HOST "127.0.0.1"
 #define PORT "80"
 
 #define HTTP_BUF_LEN 65535
@@ -27,7 +26,7 @@
 #define URI_ADDR_LEN 256
 #define HTTP_VER_LEN 64
 
-int server_socket(const char *host, const char *port);
+int server_socket(const char *port);
 
 void accept_loop(int sock);
 
@@ -45,7 +44,7 @@ int main(int argc,char **argv)
 		exit(EX_USAGE);
 	}
 
-	if((sock=server_socket(HOST,PORT))==-1)
+	if((sock=server_socket(PORT))==-1)
 	{
 		(void)fprintf(stderr,"%s : fail server_socket()",argv[0]);
 		exit(EX_UNAVAILABLE);
@@ -58,7 +57,7 @@ int main(int argc,char **argv)
 }
 
 
-int server_socket(const char *host, const char *port) 
+int server_socket(const char *port) 
 {
 	struct addrinfo hints, *res0;
 	int sock, opt, errcode;
@@ -71,7 +70,7 @@ int server_socket(const char *host, const char *port)
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 
-	if ((errcode = getaddrinfo(host, port, &hints, &res0)) != 0) 
+	if ((errcode = getaddrinfo(NULL, port, &hints, &res0)) != 0) 
 	{
 		(void) fprintf(stderr, "getaddrinfo(): %s\n", gai_strerror(errcode));
 		return (-1);
