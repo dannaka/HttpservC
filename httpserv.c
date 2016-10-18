@@ -77,17 +77,16 @@ int server_socket(const char *port)
 	}
 
 	if ((errcode = getnameinfo(res0->ai_addr, res0->ai_addrlen, 
-							  hbuf, (socklen_t)sizeof(hbuf),
-							  sbuf, (socklen_t)sizeof(sbuf),
-							  NI_NUMERICHOST | NI_NUMERICSERV)) != 0) 
+				   hbuf, (socklen_t)sizeof(hbuf),
+				   sbuf, (socklen_t)sizeof(sbuf),
+				   NI_NUMERICHOST | NI_NUMERICSERV)) != 0) 
 	{
 		(void) fprintf(stderr, "getnameinfo(): %s\n", gai_strerror(errcode));
 		freeaddrinfo(res0);
 		return (-1);
 	}
 
-	if ((sock = socket(res0->ai_family, res0->ai_socktype, res0->ai_protocol))
-			== -1) 
+	if ((sock = socket(res0->ai_family, res0->ai_socktype, res0->ai_protocol)) == -1) 
 	{
 		perror("socket");
 		freeaddrinfo(res0);
@@ -151,12 +150,11 @@ void accept_loop(int sock)
 		} 
 		else 
 		{
-			if ((errcode = getnameinfo((const struct sockaddr*)&from, len, hbuf, sizeof(hbuf), sbuf,
-					sizeof(sbuf),
-					NI_NUMERICHOST | NI_NUMERICSERV)) == -1)
-			{
+			if ((errcode = getnameinfo((const struct sockaddr*)&from, len, 
+						   hbuf, sizeof(hbuf), 
+						   sbuf, sizeof(sbuf),
+						   NI_NUMERICHOST | NI_NUMERICSERV)) == -1)
 				(void) fprintf(stderr, "getnameinfo():%s\n",gai_strerror(errcode));
-			}
 			
 			(void) fprintf(stderr, "accept from %s : %s\n", hbuf, sbuf);
 
