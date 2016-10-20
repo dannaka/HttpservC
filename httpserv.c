@@ -185,7 +185,7 @@ void http(int sockfd)
 	} 
 	else 
 	{
-		sscanf(buf, "%"STR(METHOD_NAME_LEN)"s %"STR(URI_ADDR_LEN)"s %"STR(HTTP_VER_LEN)"s", method_name, uri_addr, http_ver);
+		sscanf(buf, S(METHOD_NAME_LEN)" "S(URI_ADDR_LEN)" "S(HTTP_VER_LEN), method_name, uri_addr, http_ver);
 		if (strcmp(method_name, "GET") != 0) 
 		{
 			send_msg(sockfd, "501 Not Implemented");
