@@ -19,6 +19,8 @@
 #include<sysexits.h>
 #include<unistd.h>
 
+#include"format.h"
+
 #define PORT "80"
 
 #define HTTP_BUF_LEN 65535
@@ -183,7 +185,7 @@ void http(int sockfd)
 	} 
 	else 
 	{
-		sscanf(buf, "%s %s %s", method_name, uri_addr, http_ver);
+		sscanf(buf, "%"STR(METHOD_NAME_LEN)"s %"STR(URI_ADDR_LEN)"s %"STR(HTTP_VER_LEN)"s", method_name, uri_addr, http_ver);
 		if (strcmp(method_name, "GET") != 0) 
 		{
 			send_msg(sockfd, "501 Not Implemented");
