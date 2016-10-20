@@ -23,10 +23,10 @@
 
 #define PORT "80"
 
-#define HTTP_BUF_LEN 336
 #define METHOD_NAME_LEN 16
 #define URI_ADDR_LEN 256
 #define HTTP_VER_LEN 64
+#define HTTP_BUF_LEN METHOD_NAME_LEN + URI_ADDR_LEN + HTTP_VER_LEN
 
 int server_socket(const char *port);
 
