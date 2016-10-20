@@ -23,7 +23,7 @@
 
 #define PORT "80"
 
-#define HTTP_BUF_LEN 65535
+#define HTTP_BUF_LEN 336
 #define METHOD_NAME_LEN 16
 #define URI_ADDR_LEN 256
 #define HTTP_VER_LEN 64
